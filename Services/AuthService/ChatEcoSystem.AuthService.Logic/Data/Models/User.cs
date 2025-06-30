@@ -1,7 +1,7 @@
 ﻿using System;
 using ChatEcoSystem.Abstractions;
 
-namespace ChatEcoSystem.AuthService.Logic
+namespace ChatEcoSystem.AuthService.Logic.Models
 {
     /// <summary>
     /// Пользователь
