@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.AuthService.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.AuthService.Logic", "Services\AuthService\ChatEcoSystem.AuthService.Logic\ChatEcoSystem.AuthService.Logic.csproj", "{BA558C0E-CE14-47DA-A3F2-A228B8C05255}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Abstractions", "ChatEcoSystem.Abstractions\ChatEcoSystem.Abstractions.csproj", "{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Abstractions", "Lib\ChatEcoSystem.Abstractions\ChatEcoSystem.Abstractions.csproj", "{49B15A4E-1388-81DE-8962-22C2121FC43D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B15A4E-1388-81DE-8962-22C2121FC43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B15A4E-1388-81DE-8962-22C2121FC43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B15A4E-1388-81DE-8962-22C2121FC43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B15A4E-1388-81DE-8962-22C2121FC43D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,7 +48,7 @@ Global
 		{D076244C-BB55-4915-B2F8-29F8CED99968} = {7BFEDD53-99DA-4CEC-B140-CC437FE0F82F}
 		{3B20CD66-5961-4767-93B8-1C5D9814DB6C} = {D076244C-BB55-4915-B2F8-29F8CED99968}
 		{BA558C0E-CE14-47DA-A3F2-A228B8C05255} = {D076244C-BB55-4915-B2F8-29F8CED99968}
-		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{49B15A4E-1388-81DE-8962-22C2121FC43D} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27DCCE69-A643-4C7E-9047-B049A8A80020}
