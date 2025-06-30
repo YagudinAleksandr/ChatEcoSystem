@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ChatEcoSystem.Abstractions\ChatEcoSystem.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Lib\ChatEcoSystem.Contracts\ChatEcoSystem.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

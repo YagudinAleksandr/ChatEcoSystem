@@ -1,11 +1,54 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Contracts", "Lib\ChatEcoSystem.Contracts\ChatEcoSystem.Contracts.csproj", "{738183CB-E9EA-4C2D-99A2-C5E9BE764E0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7BFEDD53-99DA-4CEC-B140-CC437FE0F82F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService", "{D076244C-BB55-4915-B2F8-29F8CED99968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.AuthService.Abstractions", "Services\AuthService\ChatEcoSystem.AuthService.Abstractions\ChatEcoSystem.AuthService.Abstractions.csproj", "{3B20CD66-5961-4767-93B8-1C5D9814DB6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.AuthService.Logic", "Services\AuthService\ChatEcoSystem.AuthService.Logic\ChatEcoSystem.AuthService.Logic.csproj", "{BA558C0E-CE14-47DA-A3F2-A228B8C05255}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Abstractions", "ChatEcoSystem.Abstractions\ChatEcoSystem.Abstractions.csproj", "{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{738183CB-E9EA-4C2D-99A2-C5E9BE764E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{738183CB-E9EA-4C2D-99A2-C5E9BE764E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{738183CB-E9EA-4C2D-99A2-C5E9BE764E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{738183CB-E9EA-4C2D-99A2-C5E9BE764E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B20CD66-5961-4767-93B8-1C5D9814DB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B20CD66-5961-4767-93B8-1C5D9814DB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B20CD66-5961-4767-93B8-1C5D9814DB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B20CD66-5961-4767-93B8-1C5D9814DB6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA558C0E-CE14-47DA-A3F2-A228B8C05255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{738183CB-E9EA-4C2D-99A2-C5E9BE764E0D} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{D076244C-BB55-4915-B2F8-29F8CED99968} = {7BFEDD53-99DA-4CEC-B140-CC437FE0F82F}
+		{3B20CD66-5961-4767-93B8-1C5D9814DB6C} = {D076244C-BB55-4915-B2F8-29F8CED99968}
+		{BA558C0E-CE14-47DA-A3F2-A228B8C05255} = {D076244C-BB55-4915-B2F8-29F8CED99968}
+		{99B73A29-6DB3-4611-9ED7-F03CD6253DDB} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27DCCE69-A643-4C7E-9047-B049A8A80020}
