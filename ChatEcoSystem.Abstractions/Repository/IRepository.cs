@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChatEcoSystem.Abstractions
@@ -8,7 +9,7 @@ namespace ChatEcoSystem.Abstractions
     /// Базовый репозиторий
     /// </summary>
     /// <typeparam name="TEntity">Сущность</typeparam>
-    public interface IRepository<TKey, TEntity> where TEntity : IEntity<TKey>
+    public interface IRepository<TKey, TEntity> where TEntity : class, IEntity<TKey>
     {
         /// <summary>
         /// Создание сущности
@@ -39,7 +40,16 @@ namespace ChatEcoSystem.Abstractions
         /// <param name="id">ИД</param>
         /// <returns>Сущность</returns>
         [return: MaybeNull]
-        Task<TEntity> Get(TKey id);
+        Task<TEntity> GetById(TKey id);
+
+
+        /// <summary>
+        /// Получение сущности по фильтру
+        /// </summary>
+        /// <param name="filter">Фильтр</param>
+        /// <returns>Сущность</returns>
+        [return: MaybeNull]
+        Task<TEntity> Get(BaseFilter filter);
 
         /// <summary>
         /// Получение списка сущностей по фильтру
