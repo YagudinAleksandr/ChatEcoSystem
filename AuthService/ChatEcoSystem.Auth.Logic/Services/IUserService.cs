@@ -47,20 +47,6 @@ namespace ChatEcoSystem.Auth.Logic
         Task<BaseApiResponse<UserDto>> GetById(Guid id);
 
         /// <summary>
-        /// Проверка на существование E-mail
-        /// </summary>
-        /// <param name="email">E-mail</param>
-        /// <returns>true - существует, false - отсутствует</returns>
-        Task<BaseApiResponse<bool>> ExistEmail(string email);
-
-        /// <summary>
-        /// Получение по фильтру
-        /// </summary>
-        /// <param name="filter">Фильтр</param>
-        /// <returns>Пользователь <see cref="UserDto"/></returns>
-        Task<BaseApiResponse<UserDto>> GetByFilter(BaseFilter filter);
-
-        /// <summary>
         /// Получение пользователей по фильтру
         /// </summary>
         /// <param name="filter">Фильтр</param>
