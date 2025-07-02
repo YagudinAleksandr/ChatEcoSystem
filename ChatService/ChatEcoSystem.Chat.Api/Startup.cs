@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ChatEcoSystem.Chat.Logic;
+using ChatEcoSystem.SharedLib.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace ChatEcoSystem.Chat.Api
 {
@@ -25,6 +20,7 @@ namespace ChatEcoSystem.Chat.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddChatServiceLogic(Configuration);
             services.AddControllers();
         }
 
@@ -36,6 +32,12 @@ namespace ChatEcoSystem.Chat.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var migrator = scope.ServiceProvider.GetRequiredService<IMigrator>();
+                migrator.Apply().GetAwaiter().GetResult();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -45,6 +47,12 @@ namespace ChatEcoSystem.Chat.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers(); // Регистрация контроллеров
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }
