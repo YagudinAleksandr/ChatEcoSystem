@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Chat.Api", "ChatService\ChatEcoSystem.Chat.Api\ChatEcoSystem.Chat.Api.csproj", "{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Chat.Logic", "ChatService\ChatEcoSystem.Chat.Logic\ChatEcoSystem.Chat.Logic.csproj", "{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{76D5094E-2152-4D92-B6C6-35063FD59AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76D5094E-2152-4D92-B6C6-35063FD59AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76D5094E-2152-4D92-B6C6-35063FD59AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +72,8 @@ Global
 		{16CFA38B-A8B6-4A22-8888-04A0DB689CBD} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{52FA43FC-7AAB-4158-8228-FEAD1B23D656} = {690C495A-E6BD-44F9-A89B-44B1A04785AE}
 		{76D5094E-2152-4D92-B6C6-35063FD59AA1} = {690C495A-E6BD-44F9-A89B-44B1A04785AE}
+		{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768} = {8763EB3A-A905-49BB-9C88-A50E9F844BA8}
+		{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142} = {8763EB3A-A905-49BB-9C88-A50E9F844BA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27DCCE69-A643-4C7E-9047-B049A8A80020}
