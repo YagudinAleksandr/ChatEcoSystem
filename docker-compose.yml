@@ -4,9 +4,8 @@ services:
   db:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: chat-ecosystem-db
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Your_password123
+    env_file:
+      - mssql.env
     ports:
       - "5400:1433"
     healthcheck:
@@ -14,6 +13,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
 
   auth-api:
     build:
@@ -28,3 +32,17 @@ services:
     ports:
       - "5000:5000"
       - "5001:5001" 
+  
+  chat-api:
+    build:
+      context: .
+      dockerfile: AuthService/ChatEcoSystem.Chat.Api/Dockerfile
+    container_name: chat-ecosystem-chat-api
+    env_file:
+      - chat-service.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5002:5002"
+      - "5003:5003"

@@ -60,6 +60,8 @@ namespace ChatEcoSystem.Chat.Logic
 
             return services.AddScoped<IChatRoomService, ChatRoomService>()
                 .AddScoped<IMessageService, MessageService>()
+                .AddScoped<IChatRoomApiService, ChatRoomApiServiceAdapter>()
+                .AddScoped<IMessageApiService, MessageApiServiceAdapter>()
                 .AddSingleton<IPresenceTracker, PresenceTracker>();
 
         }

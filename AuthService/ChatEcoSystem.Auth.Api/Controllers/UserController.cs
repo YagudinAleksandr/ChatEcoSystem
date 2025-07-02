@@ -42,7 +42,7 @@ namespace ChatEcoSystem.Auth.Api.Controllers
         /// Удаление пользователя
         /// </summary>
         /// <param name="id">ИД</param>
-        [HttpDelete(nameof(Create))]
+        [HttpDelete(nameof(Delete))]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseApiResponse<bool>))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseApiResponse<bool>))]
         public async Task<IActionResult> Delete(Guid id)
