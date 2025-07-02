@@ -1,3 +1,4 @@
+using ChatEcoSystem.SharedLib.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,12 @@ namespace ChatEcoSystem.Auth.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var migrator = scope.ServiceProvider.GetRequiredService<IMigrator>();
+                migrator.Apply().GetAwaiter().GetResult();
             }
 
             app.UseHttpsRedirection();
