@@ -65,6 +65,6 @@ namespace ChatEcoSystem.Auth.Logic
         /// </summary>
         /// <param name="filter">Фильтр</param>
         /// <returns>Коллекция пользователей</returns>
-        Task<IReadOnlyCollection<UserDto>> GetAll(BaseFilter filter = null);
+        Task<BaseApiResponse<IReadOnlyCollection<UserDto>>> GetAll(BaseFilter filter = null);
     }
 }
