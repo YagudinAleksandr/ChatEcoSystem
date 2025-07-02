@@ -1,25 +1,25 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using ChatEcoSystem.Chat.Logic.Data;
 using ChatEcoSystem.SharedLib.Abstractions;
-using ChatEcoSystem.Auth.Logic.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace ChatEcoSystem.Auth.Logic
+namespace ChatEcoSystem.Chat.Logic.Repositories
 {
     /// <summary>
-    /// Репозиторий сервиса пользователей
+    /// Репозиторий сервиса чатов
     /// </summary>
     /// <inheritdoc cref="IRepository{TEntity, TKey}"/>
     internal class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey>
     {
         #region CTOR
         /// <inheritdoc cref="UserAuthContext"/>
-        private readonly UserAuthContext _context;
+        private readonly ChatContext _context;
 
         /// <inheritdoc cref="DbSet{TEntity}"/>
         private readonly DbSet<TEntity> _dbSet;
 
-        public Repository(UserAuthContext context)
+        public Repository(ChatContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();
