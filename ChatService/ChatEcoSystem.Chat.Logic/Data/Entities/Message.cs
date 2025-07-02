@@ -9,7 +9,7 @@ namespace ChatEcoSystem.Chat.Logic.Data
     internal class Message : IEntity<Guid>
     {
         /// <inheritdoc/>
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = new Guid();
 
         /// <summary>
         /// Идентификатор отправителя
@@ -27,18 +27,8 @@ namespace ChatEcoSystem.Chat.Logic.Data
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
 
         /// <summary>
-        /// Идентификаторы получателей (через запятую)
+        /// ИД кабинета
         /// </summary>
-        public string ReceiverIds { get; set; }
-
-        /// <summary>
-        /// Флаг группового сообщения
-        /// </summary>
-        public bool IsGroupMessage { get; set; }
-
-        /// <summary>
-        /// Флаг редактирования сообщения
-        /// </summary>
-        public bool IsEdited { get; set; } = false;
+        public Guid ChatRoomId { get; set; }
     }
 }
