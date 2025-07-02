@@ -22,6 +22,7 @@ namespace ChatEcoSystem.Auth.Logic
             services.AddRepositories();
             services.AddDbContext<UserAuthContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IMigrator, Migrator>();
 
             return services;
         }
