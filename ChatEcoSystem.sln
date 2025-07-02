@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatService", "ChatService", "{8763EB3A-A905-49BB-9C88-A50E9F844BA8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresenceService", "PresenceService", "{26BBB13B-2AB8-4580-9465-745E60198390}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationService", "NotificationService", "{4716025B-BB3F-43EE-BD08-18EA78FE8868}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{83B70929-8439-4CD9-A66B-AA529429C8C0}"
@@ -26,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
 	ProjectSection(SolutionItems) = preProject
 		auth-service.env = auth-service.env
+		chat-service.env = chat-service.env
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject

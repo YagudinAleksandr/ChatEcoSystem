@@ -23,9 +23,6 @@
 
 	<ItemGroup>
 		<Folder Include="Configs\" />
-		<Folder Include="Data\Migrations\" />
-		<Folder Include="Profiles\" />
-		<Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>

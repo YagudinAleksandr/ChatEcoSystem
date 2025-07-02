@@ -1,4 +1,4 @@
-﻿namespace ChatEcoSystem.SharedLib.Contracts.Chat
+﻿namespace ChatEcoSystem.SharedLib.Contracts
 {
     /// <summary>
     /// Типы комнат чата

@@ -1,17 +1,14 @@
 ﻿using System;
-using ChatEcoSystem.Chat.Logic.Data.Entities;
-using System.ComponentModel.DataAnnotations;
-using ChatEcoSystem.SharedLib.Abstractions;
+using System.Collections.Generic;
 
-namespace ChatEcoSystem.Chat.Logic.Data
+namespace ChatEcoSystem.SharedLib.Contracts
 {
     /// <summary>
-    /// Сообщение
+    /// DTO для передачи данных о сообщении
     /// </summary>
-    public class Message : IEntity<Guid>
+    public class MessageDto
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Идентификатор отправителя
@@ -26,7 +23,7 @@ namespace ChatEcoSystem.Chat.Logic.Data
         /// <summary>
         /// Время отправки
         /// </summary>
-        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+        public DateTime Timestamp { get; set; }
 
         /// <summary>
         /// Идентификатор чат-комнаты
@@ -39,13 +36,13 @@ namespace ChatEcoSystem.Chat.Logic.Data
         public bool IsEdited { get; set; }
 
         /// <summary>
-        /// Идентификатор получателя (для личных сообщений)
+        /// Идентификаторы получателей (для новых сообщений)
         /// </summary>
-        public string ReceiverId { get; set; }
+        public List<string> ReceiverIds { get; set; } = new List<string>();
 
         /// <summary>
-        /// Навигационное свойство к чат-комнате
+        /// Дополнительные данные для клиента
         /// </summary>
-        public virtual ChatRoom ChatRoom { get; set; }
+        public Dictionary<string, object> Metadata { get; set; } = new Dictionary<string, object>();
     }
 }

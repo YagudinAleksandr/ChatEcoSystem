@@ -1,5 +1,5 @@
 ﻿using ChatEcoSystem.Chat.Logic.Data.Entities;
-using ChatEcoSystem.SharedLib.Contracts.Chat;
+using ChatEcoSystem.SharedLib.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,7 +16,8 @@ namespace ChatEcoSystem.Chat.Logic.Data.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x=>x.Name).IsRequired().HasMaxLength(512);
             builder.Property(x => x.Type).HasDefaultValue(ChatRoomTypeEnum.Personal);
-            builder.Property(x=>x.MemberIds).IsRequired().HasMaxLength(2048);
+            builder.Property(x=>x.MemberIdsSerialized).IsRequired();
+            builder.HasIndex(r => r.MemberIdsSerialized);
         }
     }
 }
