@@ -23,7 +23,7 @@ namespace ChatEcoSystem.SharedLib.Contracts
         /// <summary>
         /// Дата создания
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         /// <summary>
         /// Идентификаторы участников

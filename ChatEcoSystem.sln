@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		auth-service.env = auth-service.env
 		chat-service.env = chat-service.env
 		docker-compose.yml = docker-compose.yml
+		mssql.env = mssql.env
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Chat.Api", "ChatService\ChatEcoSystem.Chat.Api\ChatEcoSystem.Chat.Api.csproj", "{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}"
