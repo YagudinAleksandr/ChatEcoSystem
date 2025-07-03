@@ -36,7 +36,7 @@ services:
   chat-api:
     build:
       context: .
-      dockerfile: AuthService/ChatEcoSystem.Chat.Api/Dockerfile
+      dockerfile: ChatService/ChatEcoSystem.Chat.Api/Dockerfile
     container_name: chat-ecosystem-chat-api
     env_file:
       - chat-service.env
@@ -46,3 +46,14 @@ services:
     ports:
       - "5002:5002"
       - "5003:5003"
+  
+  notification:
+    build:
+        context: .
+        dockerfile: NotificationService/ChatEcoSystem.Notification.Worker/Dockerfile
+    container_name: chat-ecosystem-notification-worker
+    env_file:
+        - notification-service.env
+    depends_on:
+        db:
+          condition: service_healthy
