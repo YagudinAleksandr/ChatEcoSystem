@@ -5,6 +5,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Configs\**" />
+	  <EmbeddedResource Remove="Configs\**" />
+	  <None Remove="Configs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.Json" Version="3.1.32" />
 		<PackageReference Include="StackExchange.Redis" Version="2.0.495" />
@@ -19,10 +25,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\SharedLib\ChatEcoSystem.SharedLib.Abstractions\ChatEcoSystem.SharedLib.Abstractions.csproj" />
 		<ProjectReference Include="..\..\SharedLib\ChatEcoSystem.SharedLib.Contracts\ChatEcoSystem.SharedLib.Contracts.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Configs\" />
 	</ItemGroup>
 
 </Project>

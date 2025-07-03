@@ -1,9 +1,7 @@
+using ChatEcoSystem.Notification.Logic;
+using ChatEcoSystem.SharedLib.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ChatEcoSystem.Notification.Worker
 {
@@ -11,13 +9,23 @@ namespace ChatEcoSystem.Notification.Worker
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            // Run migrations before starting the worker
+            using (var scope = host.Services.CreateScope())
+            {
+                var migrator = scope.ServiceProvider.GetRequiredService<IMigrator>();
+                migrator.Apply().GetAwaiter().GetResult();
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddNotificationServiceLogic(hostContext.Configuration);
                     services.AddHostedService<Worker>();
                 });
     }
