@@ -1,0 +1,75 @@
+@page
+@model dynamic
+@{
+    ViewData["Title"] = "Вход";
+    Layout = "_Layout";
+}
+<div class="d-flex justify-content-center align-items-center vh-100 bg-telegram-sidebar">
+    <div class="card shadow p-4" style="min-width:320px;max-width:400px;">
+        <h3 class="mb-4 text-telegram text-center">Вход</h3>
+        <form id="loginForm" action="javascript:void(0);">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required autofocus />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Пароль</label>
+                <input type="password" name="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Войти</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/Account/Register" class="text-telegram">Регистрация</a>
+        </div>
+        <div id="loginError" class="alert alert-danger mt-3 d-none"></div>
+    </div>
+</div>
+@section Scripts {
+<script>
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = this.email.value;
+        const password = this.password.value;
+
+        if (!email || !password) {
+            showToast('Пожалуйста, заполните все поля', 'danger');
+            return;
+        }
+
+        try {
+            const res = await fetch(`${window.gatewayUrl}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.data && data.data.token) {
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('userName', email);
+                    showToast('Успешный вход!', 'success');
+                    setTimeout(() => window.location = '/Chats/Index', 700);
+                } else {
+                    showError('Ошибка авторизации: неверный ответ сервера');
+                }
+            } else {
+                showError('Ошибка авторизации: неверный логин или пароль');
+            }
+        } catch (error) {
+            showError('Ошибка авторизации: неизвестная ошибка');
+        }
+    });
+    loginForm.email.addEventListener('input', clearError);
+    loginForm.password.addEventListener('input', clearError);
+    function showError(msg) {
+        const err = document.getElementById('loginError');
+        err.textContent = msg;
+        err.classList.remove('d-none');
+        showToast(msg, 'danger');
+    }
+    function clearError() {
+        document.getElementById('loginError').classList.add('d-none');
+    }
+</script>
+} 

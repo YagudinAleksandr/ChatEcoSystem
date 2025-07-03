@@ -22,6 +22,17 @@ namespace ChatEcoSystem.Chat.Api
         {
             services.AddChatServiceLogic(Configuration);
             services.AddControllers();
+            
+            // Добавляем CORS политику
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,20 +49,18 @@ namespace ChatEcoSystem.Chat.Api
                 migrator.Apply().GetAwaiter().GetResult();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection(); // отключено для работы только по HTTP
 
             app.UseRouting();
+            
+            // Включаем CORS
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers(); // ����������� ������������
                 endpoints.MapHub<ChatHub>("/chatHub");
             });
         }

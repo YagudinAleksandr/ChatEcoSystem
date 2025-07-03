@@ -1,0 +1,43 @@
+@page
+@model dynamic
+@{
+    ViewData["Title"] = "Чаты";
+    Layout = "_Layout";
+}
+@section Sidebar {
+    <ul class="list-group list-group-flush" id="chatList">
+        <!-- Чаты будут подгружаться JS -->
+    </ul>
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) window.location = '/Account/Login';
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChats();
+        });
+
+        async function loadChats() {
+            try {
+                const response = await fetch(`${window.gatewayUrl}/api/chatrooms/getuserchatrooms?userId=demo`, {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const chats = await response.json();
+                const chatList = document.getElementById('chatList');
+                chatList.innerHTML = '';
+                chats.forEach(chat => {
+                    const displayName = chat.name || 'Чат';
+                    const avatar = `<div class='rounded-circle bg-telegram-topbar text-white d-flex align-items-center justify-content-center me-2' style='width:32px;height:32px;font-size:1.1rem;'>${displayName.substring(0,1).toUpperCase()}</div>`;
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex align-items-center justify-content-between bg-transparent';
+                    li.innerHTML = `<a href='/Chats/Room?id=${chat.id}' class='d-flex align-items-center text-decoration-none flex-grow-1 text-dark'>${avatar}<span>${displayName}</span></a>` +
+                        `<span class='badge rounded-pill ${chat.isOnline ? 'bg-success' : 'bg-secondary'}' title='${chat.isOnline ? 'Онлайн' : 'Оффлайн'}'>${chat.isOnline ? '●' : '○'}</span>`;
+                    chatList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Ошибка при загрузке чатов:', error);
+            }
+        }
+    </script>
+}
+<div class="d-flex flex-column align-items-center justify-content-center h-100">
+    <h2 class="text-telegram mb-4">Выберите чат слева</h2>
+</div> 

@@ -1,0 +1,52 @@
+@page
+@model dynamic
+@{
+    ViewData["Title"] = "Профиль";
+    Layout = "_Layout";
+}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-4" id="profileCard">
+                <!-- Данные профиля будут подгружаться JS -->
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+<script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location = '/Account/Login';
+    async function loadProfile() {
+        try {
+            const response = await fetch(`${window.gatewayUrl}/api/users/getbyid?id=demo`, {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
+            const user = await response.json();
+            document.getElementById('profileCard').innerHTML = `
+                <div class='d-flex align-items-center mb-3'>
+                    <div class='rounded-circle bg-telegram-topbar text-white d-flex align-items-center justify-content-center me-3' style='width:56px;height:56px;font-size:2rem;'>${user.username.substring(0,1).toUpperCase()}</div>
+                    <div>
+                        <h4 class='mb-0'>${user.username}</h4>
+                        <span class='badge ${user.isOnline ? 'bg-success' : 'bg-secondary'}'>${user.isOnline ? 'Онлайн' : 'Оффлайн'}</span>
+                    </div>
+                </div>
+                <div class='mb-3'>
+                    <label class='form-label'>Email</label>
+                    <input type='email' class='form-control' value='${user.email}' readonly />
+                </div>
+                <button onclick='logout()' class='btn btn-danger w-100'>Выйти</button>
+            `;
+        } catch (error) {
+            console.error('Ошибка при загрузке профиля:', error);
+        }
+    }
+    loadProfile();
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        window.location = '/Account/Login';
+    }
+</script>
+} 
+</div> 

@@ -1,0 +1,131 @@
+@page
+@model RoomModel
+@{
+    ViewData["Title"] = "Чат";
+    Layout = "_Layout";
+    var chatId = Model.ChatId;
+}
+<div class="d-flex flex-column h-100">
+    <div class="flex-grow-1 overflow-auto p-3" id="messagesArea" style="background:#fff;">
+        <ul class="list-unstyled" id="messagesList">
+            <!-- Сообщения будут добавляться JS -->
+        </ul>
+    </div>
+    <form id="sendForm" class="d-flex border-top p-2 bg-light">
+        <input type="text" id="messageInput" class="form-control me-2" placeholder="Введите сообщение..." autocomplete="off" />
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@7.0.5/dist/browser/signalr.min.js"></script>
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) window.location = '/Account/Login';
+        const chatId = '@Model.ChatId';
+        const userName = localStorage.getItem('userName') || 'Гость';
+        const messagesList = document.getElementById('messagesList');
+        const messageInput = document.getElementById('messageInput');
+        const sendForm = document.getElementById('sendForm');
+        let editingMessageId = null;
+        messageInput.focus();
+
+        // SignalR connection
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl(`${window.gatewayUrl.replace('http', 'ws')}/chatHub`, { accessTokenFactory: () => token })
+            .build();
+
+        connection.on('ReceiveMessage', (user, message, messageId, isOwn, displayName) => {
+            addMessage(user, message, messageId, isOwn, displayName);
+            scrollToBottom();
+        });
+        connection.on('EditMessage', (messageId, newContent) => {
+            const msgElem = document.getElementById('msg-' + messageId);
+            if (msgElem) {
+                msgElem.querySelector('.msg-text').textContent = newContent + ' (изменено)';
+                showToast('Сообщение отредактировано', 'info');
+            }
+        });
+        connection.on('DeleteMessage', (messageId) => {
+            const msgElem = document.getElementById('msg-' + messageId);
+            if (msgElem) {
+                msgElem.remove();
+                showToast('Сообщение удалено', 'info');
+            }
+        });
+        connection.on('UserStatusChanged', (user, isOnline) => {
+            // Можно обновить статус в списке пользователей
+        });
+
+        connection.start().then(() => {
+            connection.invoke('JoinChat', chatId, userName);
+            loadChatHistory();
+        }).catch(() => showToast('Ошибка подключения к чату', 'danger'));
+
+        sendForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const text = messageInput.value.trim();
+            if (!text) return;
+            if (editingMessageId) {
+                connection.invoke('EditMessage', editingMessageId, text)
+                    .catch(() => showToast('Ошибка редактирования сообщения', 'danger'));
+                editingMessageId = null;
+            } else {
+                connection.invoke('SendMessage', chatId, userName, text)
+                    .then(() => showToast('Сообщение отправлено', 'success'))
+                    .catch(() => showToast('Ошибка отправки сообщения', 'danger'));
+            }
+            messageInput.value = '';
+            messageInput.focus();
+        });
+
+        function addMessage(user, message, messageId, isOwn, displayName) {
+            let li = document.getElementById('msg-' + messageId);
+            const name = displayName || user || 'Гость';
+            const avatar = `<div class='rounded-circle bg-telegram-topbar text-white d-flex align-items-center justify-content-center me-2' style='width:32px;height:32px;font-size:1.1rem;'>${name.substring(0,1).toUpperCase()}</div>`;
+            if (!li) {
+                li = document.createElement('li');
+                li.id = 'msg-' + messageId;
+                li.className = 'mb-2 d-flex align-items-center';
+                li.innerHTML = `${avatar}<b class=\"me-2\">${name}:</b> <span class=\"msg-text\">${message}</span>`;
+                if (isOwn) {
+                    li.innerHTML += ` <button class=\"btn btn-sm btn-link text-primary ms-2\" onclick=\"editMessage('${messageId}', '${message.replace(/'/g, "\\'")}')\">✎</button>`;
+                    li.innerHTML += ` <button class=\"btn btn-sm btn-link text-danger ms-1\" onclick=\"deleteMessage('${messageId}')\">🗑</button>`;
+                }
+                messagesList.appendChild(li);
+            } else {
+                li.querySelector('.msg-text').textContent = message;
+            }
+        }
+
+        window.editMessage = function (messageId, content) {
+            messageInput.value = content;
+            editingMessageId = messageId;
+            messageInput.focus();
+        }
+        window.deleteMessage = function (messageId) {
+            connection.invoke('DeleteMessage', messageId)
+                .catch(() => showToast('Ошибка удаления сообщения', 'danger'));
+        }
+
+        async function loadChatHistory() {
+            try {
+                const response = await fetch(`${window.gatewayUrl}/api/messages/getchathistory?chatRoomId=${chatId}`, {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const history = await response.json();
+                messagesList.innerHTML = '';
+                history.forEach(msg => addMessage(msg.senderId, msg.content, msg.id, msg.isOwn, msg.displayName));
+                scrollToBottom();
+            } catch (error) {
+                console.error('Ошибка загрузки истории:', error);
+                showToast('Ошибка загрузки истории', 'danger');
+            }
+        }
+        function scrollToBottom() {
+            setTimeout(() => {
+                const area = document.getElementById('messagesArea');
+                area.scrollTop = area.scrollHeight;
+            }, 100);
+        }
+    </script>
+} 

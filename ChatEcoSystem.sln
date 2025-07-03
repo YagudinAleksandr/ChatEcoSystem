@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		docker-compose.yml = docker-compose.yml
 		gateway.env = gateway.env
 		mssql.env = mssql.env
+		README.md = README.md
+		webapp.env = webapp.env
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Chat.Api", "ChatService\ChatEcoSystem.Chat.Api\ChatEcoSystem.Chat.Api.csproj", "{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}"
@@ -44,6 +46,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{1C9F
 	ProjectSection(SolutionItems) = preProject
 		configs\ocelot.json = configs\ocelot.json
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8B0908AB-2310-4B74-8DE7-48BD703B535B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.WebApp", "UI\ChatEcoSystem.WebApp\ChatEcoSystem.WebApp.csproj", "{CAB3726B-7EF8-4A87-9EAA-D84C51545342}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +93,10 @@ Global
 		{B940547F-4D36-4D80-8892-8F301C3502FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B940547F-4D36-4D80-8892-8F301C3502FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B940547F-4D36-4D80-8892-8F301C3502FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB3726B-7EF8-4A87-9EAA-D84C51545342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB3726B-7EF8-4A87-9EAA-D84C51545342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB3726B-7EF8-4A87-9EAA-D84C51545342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB3726B-7EF8-4A87-9EAA-D84C51545342}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +112,7 @@ Global
 		{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1} = {4716025B-BB3F-43EE-BD08-18EA78FE8868}
 		{B940547F-4D36-4D80-8892-8F301C3502FB} = {83B70929-8439-4CD9-A66B-AA529429C8C0}
 		{1C9F5E9C-1C8A-4CA3-A52A-16355E0E891A} = {754FC069-D67B-A9D7-50A1-8D1CA196D8F1}
+		{CAB3726B-7EF8-4A87-9EAA-D84C51545342} = {8B0908AB-2310-4B74-8DE7-48BD703B535B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27DCCE69-A643-4C7E-9047-B049A8A80020}

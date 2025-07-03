@@ -1,0 +1,21 @@
+.bg-telegram-sidebar {
+    background: #e6f2fb;
+}
+.bg-telegram-topbar {
+    background: #0088cc;
+}
+.text-telegram {
+    color: #0088cc;
+}
+.sidebar-sticky {
+    height: 100vh;
+    overflow-y: auto;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    background: #e6f2fb;
+}
+::-webkit-scrollbar-thumb {
+    background: #b3e0ff;
+    border-radius: 4px;
+} 

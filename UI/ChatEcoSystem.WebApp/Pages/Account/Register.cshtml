@@ -1,0 +1,81 @@
+@page
+@model dynamic
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "_Layout";
+}
+<div class="d-flex justify-content-center align-items-center vh-100 bg-white">
+    <div class="card shadow p-4" style="min-width:320px;">
+        <h3 class="mb-4 text-telegram text-center">Регистрация</h3>
+        <form id="registerForm">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Имя пользователя</label>
+                <input type="text" name="name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Пароль</label>
+                <input type="password" name="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/Account/Login" class="text-telegram">Вход</a>
+        </div>
+        <div id="registerError" class="alert alert-danger mt-3 d-none"></div>
+    </div>
+</div>
+@section Scripts {
+<script>
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = this.email.value;
+        const name = this.name.value;
+        const password = this.password.value;
+
+        if (!email || !name || !password) {
+            showToast('Пожалуйста, заполните все поля', 'danger');
+            return;
+        }
+
+        try {
+            const res = await fetch(`${window.gatewayUrl}/users/create`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, name, password })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.data && data.data.token) {
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('userName', name);
+                    showToast('Регистрация успешна!', 'success');
+                    setTimeout(() => window.location = '/Chats/Index', 700);
+                } else {
+                    showError('Ошибка регистрации: неверный ответ сервера');
+                }
+            } else {
+                showError('Ошибка регистрации: такой пользователь уже есть или ошибка данных');
+            }
+        } catch (error) {
+            showError('Ошибка регистрации: неизвестная ошибка');
+        }
+    });
+    registerForm.email.addEventListener('input', clearError);
+    registerForm.name.addEventListener('input', clearError);
+    registerForm.password.addEventListener('input', clearError);
+    function showError(msg) {
+        const err = document.getElementById('registerError');
+        err.textContent = msg;
+        err.classList.remove('d-none');
+        showToast(msg, 'danger');
+    }
+    function clearError() {
+        document.getElementById('registerError').classList.add('d-none');
+    }
+</script>
+} 
