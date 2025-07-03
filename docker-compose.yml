@@ -19,6 +19,18 @@ services:
     ports:
       - "6379:6379"
 
+  gateway:
+    build:
+      context: .
+      dockerfile: Gateway/ChatEcoSystem.Gateway/Dockerfile
+    container_name: chat-ecosystem-gateway
+    volumes:
+      - ./configs/ocelot.json:/app/ocelot.json
+    ports:
+      - "8080:80"
+    env_file:
+      - gateway.env
+
   auth-api:
     build:
       context: .
