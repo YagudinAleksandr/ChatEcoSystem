@@ -26,8 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		auth-service.env = auth-service.env
 		chat-service.env = chat-service.env
 		docker-compose.yml = docker-compose.yml
+		gateway.env = gateway.env
 		mssql.env = mssql.env
-		notification-service.env = notification-service.env
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Chat.Api", "ChatService\ChatEcoSystem.Chat.Api\ChatEcoSystem.Chat.Api.csproj", "{1FF55D5F-BF53-4DBF-8EAA-FC0EBAF2A768}"
@@ -39,6 +39,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Notification.Logic", "NotificationService\ChatEcoSystem.Notification.Logic\ChatEcoSystem.Notification.Logic.csproj", "{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Gateway", "Gateway\ChatEcoSystem.Gateway\ChatEcoSystem.Gateway.csproj", "{B940547F-4D36-4D80-8892-8F301C3502FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{1C9F5E9C-1C8A-4CA3-A52A-16355E0E891A}"
+	ProjectSection(SolutionItems) = preProject
+		configs\ocelot.json = configs\ocelot.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +101,7 @@ Global
 		{E7E62966-6BB8-4C63-A12C-C25B78321CD9} = {4716025B-BB3F-43EE-BD08-18EA78FE8868}
 		{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1} = {4716025B-BB3F-43EE-BD08-18EA78FE8868}
 		{B940547F-4D36-4D80-8892-8F301C3502FB} = {83B70929-8439-4CD9-A66B-AA529429C8C0}
+		{1C9F5E9C-1C8A-4CA3-A52A-16355E0E891A} = {754FC069-D67B-A9D7-50A1-8D1CA196D8F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27DCCE69-A643-4C7E-9047-B049A8A80020}
