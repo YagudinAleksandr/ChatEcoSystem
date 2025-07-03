@@ -19,10 +19,70 @@ services:
     ports:
       - "6379:6379"
 
+  # gateway:
+  #   build:
+  #     context: .
+  #     dockerfile: Gateway/ChatEcoSystem.Gateway/Dockerfile
+  #   container_name: chat-ecosystem-gateway
+  #   volumes:
+  #     - ./configs/ocelot.json:/app/ocelot.json
+  #   ports:
+  #     - "8080:80"
+  #   env_file:
+  #     - gateway.env
+
+  # auth-api:
+  #   build:
+  #     context: .
+  #     dockerfile: AuthService/ChatEcoSystem.Auth.Api/Dockerfile
+  #   container_name: chat-ecosystem-auth-api
+  #   env_file:
+  #     - auth-service.env
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   ports:
+  #     - "5000:5000"
+  #     - "5001:5001" 
+  
+  # chat-api:
+  #   build:
+  #     context: .
+  #     dockerfile: ChatService/ChatEcoSystem.Chat.Api/Dockerfile
+  #   container_name: chat-ecosystem-chat-api
+  #   env_file:
+  #     - chat-service.env
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   ports:
+  #     - "5002:5002"
+  #     - "5003:5003"
+  
+  # notification:
+  #   build:
+  #       context: .
+  #       dockerfile: NotificationService/ChatEcoSystem.Notification.Worker/Dockerfile
+  #   container_name: chat-ecosystem-notification-worker
+  #   env_file:
+  #       - notification-service.env
+  #   depends_on:
+  #       db:
+  #         condition: service_healthy
+
+  # webapp:
+  #   build:
+  #     context: .
+  #     dockerfile: UI/ChatEcoSystem.WebApp/Dockerfile
+  #   container_name: chat-ecosystem-webapp
+  #   ports:
+  #     - "8081:80"
+  #   depends_on:
+  #     - gateway
+  #   env_file:
+  #     - webapp.env
   gateway:
-    build:
-      context: .
-      dockerfile: Gateway/ChatEcoSystem.Gateway/Dockerfile
+    image: chatecosystemgateway
     container_name: chat-ecosystem-gateway
     volumes:
       - ./configs/ocelot.json:/app/ocelot.json
@@ -32,9 +92,7 @@ services:
       - gateway.env
 
   auth-api:
-    build:
-      context: .
-      dockerfile: AuthService/ChatEcoSystem.Auth.Api/Dockerfile
+    image: chatecosystemauthapi
     container_name: chat-ecosystem-auth-api
     env_file:
       - auth-service.env
@@ -43,12 +101,9 @@ services:
         condition: service_healthy
     ports:
       - "5000:5000"
-      - "5001:5001" 
   
   chat-api:
-    build:
-      context: .
-      dockerfile: ChatService/ChatEcoSystem.Chat.Api/Dockerfile
+    image: chatecosystemchatapi
     container_name: chat-ecosystem-chat-api
     env_file:
       - chat-service.env
@@ -57,15 +112,22 @@ services:
         condition: service_healthy
     ports:
       - "5002:5002"
-      - "5003:5003"
   
   notification:
-    build:
-        context: .
-        dockerfile: NotificationService/ChatEcoSystem.Notification.Worker/Dockerfile
+    image: chatecosystemnotificationworker
     container_name: chat-ecosystem-notification-worker
     env_file:
         - notification-service.env
     depends_on:
         db:
           condition: service_healthy
+
+  webapp:
+    image: chatecosystemwebapp
+    container_name: chat-ecosystem-webapp
+    ports:
+      - "8081:80"
+    depends_on:
+      - gateway
+    env_file:
+      - webapp.env
