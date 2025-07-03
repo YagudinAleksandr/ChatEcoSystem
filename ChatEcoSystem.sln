@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Notification.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Notification.Logic", "NotificationService\ChatEcoSystem.Notification.Logic\ChatEcoSystem.Notification.Logic.csproj", "{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatEcoSystem.Gateway", "Gateway\ChatEcoSystem.Gateway\ChatEcoSystem.Gateway.csproj", "{B940547F-4D36-4D80-8892-8F301C3502FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B940547F-4D36-4D80-8892-8F301C3502FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B940547F-4D36-4D80-8892-8F301C3502FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B940547F-4D36-4D80-8892-8F301C3502FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B940547F-4D36-4D80-8892-8F301C3502FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{E47CFDA0-F8E4-4A54-95CD-BE48CCE85142} = {8763EB3A-A905-49BB-9C88-A50E9F844BA8}
 		{E7E62966-6BB8-4C63-A12C-C25B78321CD9} = {4716025B-BB3F-43EE-BD08-18EA78FE8868}
 		{94B3CB20-58B5-4C5F-A63E-9E9F3D2DC5D1} = {4716025B-BB3F-43EE-BD08-18EA78FE8868}
+		{B940547F-4D36-4D80-8892-8F301C3502FB} = {83B70929-8439-4CD9-A66B-AA529429C8C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27DCCE69-A643-4C7E-9047-B049A8A80020}
